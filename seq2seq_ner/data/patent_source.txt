@@ -1,0 +1,58 @@
+The invention discloses a coding method which combines impulses need to be coded according to positions and respectively codes the impulse position quantity, impulse position distribution on a rail and impulse quantity of each impulse position. 
+The invention also provides a corresponding decoding method and a coding-decoding device. 
+The coding logic provided by the invention can be adopted by different coding impulse quantities so as to avoid the accumulation of coding index redundancy caused by the recursion mode so as to guarantee that the coding bit can be thoroughly utilized from a general logic conception. 
+Simultaneously, the condition that a plurality of impulses on the same position are respectively coded is avoided and then the method for coding after position combination has the advantage of saving coding bits, and the advantage of the invention can become more distinct as the possibility of impulse position overlapping rises with the increasing of the quantity of coded impulses on the rail.
+The invention addresses the needs for both high efficiency and high fidelity in the transmission of voice signals by providing the advantage of better speech quality than has previously existed with CELP digital processors, while providing for efficient use of channel capacity. 
+The invention employs circuitry for generating an excitation vector for exciting a linear prediction (LP) filter in accordance with the principles of algebraic CELP. 
+The circuitry, which may be constructed as a suitably programmed computer, comprises both an adaptive codebook and a fixed codebook wherein the adaptive codebook serves to store previously employed codevectors and the fixed codebook serves to generate a sequence of numerous possible codevectors. 
+A vocoder, operating in accordance with the invention, comprises the foregoing circuitry and, furthermore, provides for a circular shift of codevectors outputted by the fixed codebook to obtain many more codevectors in the generation of codewords for application to the LP synthesizing filter. 
+Two additional filters are employed, one for removing periodic components speech quality. 
+This is an improvement over current EVRC operating at maximum half rate wherein three pulses are used to represent the excitation, this being insufficient to provide the desired high quality speech. 
+The invention may also employ a transform coding approach to encode the speech. The invention is useful in telephony including CDMA phone and potentially also in CDG/TIa and TR45 half rate standardization.
+The present invention provides for the development of a new vector quantization technique which improves the excitation vector in the code-excited linear prediction, CELP, speech coding, particularly for the case of the half rate enhanced variable rate coder, EVRC The invention is can be used in a digital cellular system to improve overall system capacity.
+In FIG. 1, a mobile telephone 20 of a digital cellular telephone system comprises a microphone 22, a speech coding unit 24, a channel coding unit 26, a modulator 28 and an RF (radio frequency) unit 30. 
+Input speech, or voice, is converted by the microphone to an electrical signal which is applied by the microphone 22 to the speech coding unit 24. 
+The speech coding unit 24 digitizes the analog speech signal with sampling by an analog to digital (A/D) converter, and provides speech compression by reduction of redundancy. 
+The speech compression enables transmission of the speech at a reduced bit rate which is lower than that which is required in the absence of speech compression. 
+The speech coding unit 24 employs various features of the invention to accomplish transmission of speech or voice signals at reduced bit rates, as will be explained hereinafter. 
+The compressed speech is applied to the channel coding unit 26 which provides error protection, and places the speech in appropriate form, such as CDMA (code division multiple access) for transmission over the communication links of the cellular telephony system. 
+The signal outputted by the channel coding unit 26 is modulated onto a carrier by the modulator 28 and applied to the RF unit 30 for transmission to a base station of the cellular telephony system.
+FIG. 2 demonstrates a portion of the operation of the speech coding unit 24, and serves as a model of speech generation. 
+In FIG. 2, a linear prediction (LP) filter 32, operative in response to a set of linear prediction coefficients (LPC) connects via a switch 34 to either an unvoiced signal at 36 or a voiced signal at 38 to be inputted via the switch 34 to the filter 32. 
+The filter 32 operates on the inputted signal to output a signal to output circuitry 40. Low bit-rate coding is critical to accommodate more users on a bandwidth limited channel, such as is employed in cellular communications. 
+This model allows transmission of speech and data over the same channel. 
+In the low bit-rate speech coding, the system of the speech coding unit 24 extracts a set of parameters to describe the process of the speech generation, and transmits these parameters instead of the speech waveform.
+In this model, the excitation signal is modeled as either an impulse train for voiced speech at 38 or random noise for unvoiced speech at 36. 
+The filter 32 is a time-variable filter with transfer function H(z) wherein z is the variable in the Z transform. 
+The filter 32 is used to represent the spectral contribution of the glottal shape flow and the vocal tract. 
+The task of the speech coding is to extract the parameter of the digital filter and the excitation and uses as few as possible bits to represent them.
+The process of removal of redundancy from speech involves sophisticated mathematics. 
+This can be accomplished by linear prediction. 
+Linear prediction is used in the speech compression. 
+By the linear prediction, the sample values of speech can be estimated from a linear combination of the past speech samples. 
+The LP coefficients can be determined by minimizing the mean squared error (MSE) between the original speech samples and the linearly predicted samples. 
+The variance of the prediction error is significantly smaller than the variance of the original signal and, hence, few bits can be used for a given error criterion. 
+At low bit rate, the most successful linear predictive based speech coding algorithm operations in practical conditions are those which use analysis-by-synthesis (AbS) techniques.
+In the speech coding system, there are two kinds of parameters which are to be encoded and transmitted, namely, (1) the model parameter constituted by the LPC, and (2) the excitation parameter. 
+The encoding of the LPC parameter is well known. 
+In order to avoid direct quantization of the LPC and possible instability in the inverse filter, the LPC are transformed into an equivalent set of parameters, such as reflection coefficients or linear spectrum pairs. 
+Approximately 20-24 bits can be used to encode the LPC parameter. 
+There remains the task of encoding the excitation signal.
+In application of the model of the speech generation to low bit-rate speech coding, the optimal set of parameters for reproducing each segment of the original speech signal is found at the encoder. 
+The optimal parameters are transmitted from the encoder to a decoder at a receiving station. 
+The decoder employs the identical speech production model and the identical set of parameters to synthesize the speech waveform. 
+Coding of the parameters, rather than a coding of the entire speech waveform results in a significant compression of data.
+With reference to speech coding systems of the prior art, FIG. 3 shows a diagrammatic representation of speech coding system 42 employing employing any one of a plurality of different excitation structures or the prior art, including excitation by multi-pulse linear prediction coding (MPLPC) at block 44, code excited linear prediction (CELP) at block 46, and algebraic CELP (ACELP) at block 48. 
+Also included within the system 42 are a pitch filter 50 having a transfer function P(z), and a speech synthesizing filter 52 having a transfer funciton H(z).
+In the operation of the system 42 with CELP excitation, the excitation vector is chosen from a set of previously stored stochastic sequences. 
+During codebook search, all possible codevectors from a codebook are passed through the pitch filter 50 and the synthesizer filter 52. 
+Upon application of the codevectors to the system 42, there results a set of output signals characterized by differing values of mean square error. 
+The codevector that produces the minimum value of means squared error is chosen as the desired excitation. 
+Identical codebooks are employed at the synthesizer filter 52 and a corresponding filter (not shown) at a receiving telephone, According, it is necessary to transmit only an index corresponding to the selected codevector.
+In the operation of the system 42 with MPLPC excitation, no voiced/unvoiced classification is performed on the speech. 
+The excitation is specified by a small set of pulses with differing amplitudes and differing positions, within a time-domain representation, of the pulses. 
+Since there is no constraint on the pulse position and the pulse amplitude, a coding algorithm requires a relatively large number of bits to encode the pulse position and the pulse amplitude.
+In the operation of the system 42 with ACELP excitation, use is made of an interleaved single-pulse permutation designed to divided the pulse positions into several tracks.
+All pulses have a common fixed amplitude, and only the signs (plus or minus) of the pulses are transmitted. 
+By employing fast deep-tree search and pitch shaping, ACELP has succeeded in providing high quality speech at low bit rate. 
+The speech coding standards used in TDMA, CDMA and GSM are base on the ACELP.
